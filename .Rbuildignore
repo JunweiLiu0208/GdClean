@@ -1,2 +1,5 @@
+^renv$
+^renv\.lock$
 ^GdClean\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
