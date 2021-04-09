@@ -18,7 +18,7 @@ this method can be found in the published paper (Under Revision).
 You can install the released version of GdClean from
 [GitHub](https://github.com/) with:
 
-    devtools::install_github("XX/XX")
+    devtools::install_github("JunweiLiu0208/GdClean")
 
 ## Example
 
