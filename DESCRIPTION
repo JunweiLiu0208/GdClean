@@ -1,16 +1,18 @@
 Package: GdClean
-Title: What the Package Does (One Line, Title Case)
+Title: Method for removing Gadolinium contamination in CyTOF data
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Junwei",
+           family = "Liu",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "11615009@zju.edu.cn",
+           comment = c(ORCID = "0000-0001-8446-4221"))
+Description: This package was designed for removing the Gadolinium contamination in CyTOF system, which was induced by the application of Gadolinium-based Contrast Agents in MRI screening. The details of this method can be found in the published paper.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

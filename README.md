@@ -6,43 +6,71 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of GdClean is to …
+This package was designed for removing **Gadolinium contamination** in
+the CyTOF system, which was induced by the application of
+Gadolinium-based Contrast Agents in MRI screening. The deposition of Gd
+isotopes in tissue cells will contaminate the Gd isotope-conjugated
+antibodies in the CyTOF system and affect data quality. The details of
+this method can be found in the published paper (Under Revision).
 
 ## Installation
 
 You can install the released version of GdClean from
-[CRAN](https://CRAN.R-project.org) with:
+[GitHub](https://github.com/) with:
 
-    install.packages("GdClean")
+    devtools::install_github("XX/XX")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic workflow which shows you how to use this package:
 
-    #library(GdClean)
-    ## basic example code
+    library(GdClean)
+    library(flowCore)
+    library(stringr)
+    library(dplyr)
+    library(RColorBrewer)
+    library(pheatmap)
+    library(ggplot2)
+    library(mgcv)
+    library(ggpubr)
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+    # load FCS files
+    fcs.dir = '../RawData/'
+    frames = lapply(dir(fcs.dir,full.names = T),read.FCS,transformation = F,alter.names = T)
+    names(frames) <- basename(dir(fcs.dir))
+    fs = as(frames,'flowSet')
 
-    summary(cars)
-    #>      speed           dist       
-    #>  Min.   : 4.0   Min.   :  2.00  
-    #>  1st Qu.:12.0   1st Qu.: 26.00  
-    #>  Median :15.0   Median : 36.00  
-    #>  Mean   :15.4   Mean   : 42.98  
-    #>  3rd Qu.:19.0   3rd Qu.: 56.00  
-    #>  Max.   :25.0   Max.   :120.00
+    # Plot Pearson's correlation coefficients across Gd channels in each CyTOF files in the flowSet.
+    p1 = GdCorrHeatmap(fs)
+    p1
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<a href="https://github.com/r-lib/actions/tree/master/examples" class="uri">https://github.com/r-lib/actions/tree/master/examples</a>.
+<img src='man/figures/CorrHeatmap.png' width=80%/>
 
-You can also embed plots, for example:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+    # Estimate Gd Ratios.
+    PercentList = seq(5,100,5)
+    # select Gd contaminated flowFrame object for estimating.
+    ff = fs[[1]] 
+    GdRatios = estimateGdRatio(ff,PercentList)
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+    # Compare the estimated Ratios with Ratios of natural abundance.
+    p2 = GdRatioPlot(GdRatios)
+    p2
+
+<img src='man/figures/CompareGdRatios.png' width=100%/>
+
+
+    # Removing Gd contamination with selected Gd ratio and method for estimating contamination coefficients.
+    gdRatio = GdRatios['5%',]
+    method = '1DNorm'
+    fs_Clean = GdClean(fs,gdRatio = gdRatio,method = method)
+
+    # Write Fcs Files after Gd Clean
+    inputName = dir(fcs.dir,full.names = F)
+    outputName = unlist(sapply(inputName, function(x){
+      t1 = str_split(x,'.fcs')
+      t2 = paste0(t1[[1]][1],'_GdClean.fcs')
+      t2
+    }))
+
+    write.flowSet(fs_Clean,outdir = '../out',outputName)
