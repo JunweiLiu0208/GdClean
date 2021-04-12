@@ -101,7 +101,9 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
       # remove Gd contamination
       gdCompensate <- gdDataTmp - matrix(estimatek * gdRatio, dim(gdDataTmp)[1], dim(gdDataTmp)[2])
       gdCompensate[gdCompensate < 0] <- 0 # remove negative values
-      gdCompensate <- gdCompensate + rnorm(length(gdRatio), 1, 1) # add noise
+      noiseData = matrix(rnorm(dim(gdDataTmp)[1]*dim(gdDataTmp)[2], 1, 1),
+                         dim(gdDataTmp)[1], dim(gdDataTmp)[2])
+      gdCompensate <- gdCompensate + noiseData # add noise
 
       # replace expression data
       dataTmp[, gdChannelID] <- gdCompensate

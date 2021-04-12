@@ -35,7 +35,8 @@ This is a basic workflow which shows you how to use this package:
     library(ggpubr)
 
     # load FCS files
-    fcs.dir = '../RawData/'
+    # Please input your Gd contaminated Data.
+    fcs.dir = '../path to input directory/'
     frames = lapply(dir(fcs.dir,full.names = T),read.FCS,transformation = F,alter.names = T)
     names(frames) <- basename(dir(fcs.dir))
     fs = as(frames,'flowSet')
@@ -73,4 +74,5 @@ This is a basic workflow which shows you how to use this package:
       t2
     }))
 
-    write.flowSet(fs_Clean,outdir = '../out',outputName)
+    # write the cleaned files into the output directory 
+    write.flowSet(fs_Clean,outdir = '../path to output directory',outputName)
