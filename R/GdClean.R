@@ -23,7 +23,6 @@
 #' method <- "1DNorm"
 #' fs_Clean <- GdClean(fs, gdRatio = gdRatio, method = method)
 GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
-
   gdInfo <- getGdChannels(fs[[1]])
   gdChannelID <- gdInfo$gdChannelID
 
@@ -50,14 +49,16 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
       estimatek <- apply(gdDataTmp, 1, min)
 
       # remove Gd contamination
-      gdRatio = matrix(gdRatio,nrow = 1)
-      gdNoiseData = gdRatio[rep(1,length(estimatek)), ] * estimatek
+      gdRatio <- matrix(gdRatio, nrow = 1)
+      gdNoiseData <- gdRatio[rep(1, length(estimatek)), ] * estimatek
 
       gdCompensate <- gdDataTmp - gdNoiseData
       gdCompensate[gdCompensate < 0] <- 0 # remove negative values
 
-      noiseData = matrix(rnorm(dim(gdDataTmp)[1]*dim(gdDataTmp)[2], 1, 1),
-                         dim(gdDataTmp)[1], dim(gdDataTmp)[2])
+      noiseData <- matrix(
+        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 1, 1),
+        dim(gdDataTmp)[1], dim(gdDataTmp)[2]
+      )
       gdCompensate <- gdCompensate + noiseData # add noise
 
       # replace expression data
@@ -106,14 +107,16 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
       })
 
       ##
-      gdRatio = matrix(gdRatio,nrow = 1)
-      gdNoiseData = gdRatio[rep(1,length(estimatek)), ] * estimatek
+      gdRatio <- matrix(gdRatio, nrow = 1)
+      gdNoiseData <- gdRatio[rep(1, length(estimatek)), ] * estimatek
 
       gdCompensate <- gdDataTmp - gdNoiseData
       gdCompensate[gdCompensate < 0] <- 0 # remove negative values
 
-      noiseData = matrix(rnorm(dim(gdDataTmp)[1]*dim(gdDataTmp)[2], 1, 1),
-                         dim(gdDataTmp)[1], dim(gdDataTmp)[2])
+      noiseData <- matrix(
+        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 1, 1),
+        dim(gdDataTmp)[1], dim(gdDataTmp)[2]
+      )
       gdCompensate <- gdCompensate + noiseData # add noise
 
       # replace expression data
