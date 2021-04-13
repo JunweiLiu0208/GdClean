@@ -23,6 +23,7 @@
 #' method <- "1DNorm"
 #' fs_Clean <- GdClean(fs, gdRatio = gdRatio, method = method)
 GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
+
   gdInfo <- getGdChannels(fs[[1]])
   gdChannelID <- gdInfo$gdChannelID
 
@@ -56,7 +57,7 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
       gdCompensate[gdCompensate < 0] <- 0 # remove negative values
 
       noiseData <- matrix(
-        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 1, 1),
+        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 0, 1),
         dim(gdDataTmp)[1], dim(gdDataTmp)[2]
       )
       gdCompensate <- gdCompensate + noiseData # add noise
@@ -114,7 +115,7 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
       gdCompensate[gdCompensate < 0] <- 0 # remove negative values
 
       noiseData <- matrix(
-        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 1, 1),
+        rnorm(dim(gdDataTmp)[1] * dim(gdDataTmp)[2], 0, 1),
         dim(gdDataTmp)[1], dim(gdDataTmp)[2]
       )
       gdCompensate <- gdCompensate + noiseData # add noise
