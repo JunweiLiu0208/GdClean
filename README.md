@@ -9,9 +9,10 @@
 This package was designed for removing **Gadolinium contamination** in
 the CyTOF system, which was induced by the application of
 Gadolinium-based Contrast Agents in MRI screening. The deposition of Gd
-isotopes in tissue cells will contaminate the Gd isotope-conjugated
-antibodies in the CyTOF system and affect data quality. The details of
-this method can be found in the published paper (Under Revision).
+isotopes in tissue cells will contaminate the signal of Gd
+isotope-conjugated antibodies in the CyTOF system and affect data
+quality. The details of this method can be found in the published paper
+(Under Revision).
 
 ## Installation
 
@@ -45,7 +46,7 @@ This is a basic workflow which shows you how to use this package:
     p1 = GdCorrHeatmap(fs)
     p1
 
-<img src='man/figures/CorrHeatmap.png' width=80%/>
+<img src='man/figures/Gd_Ratio_Heatmap_plot.png' width=80%/>
 
 
     # Estimate Gd Ratios.
@@ -58,10 +59,13 @@ This is a basic workflow which shows you how to use this package:
     p2 = GdRatioPlot(GdRatios)
     p2
 
-<img src='man/figures/CompareGdRatios.png' width=100%/>
+<img src='man/figures/Gd_Ratio_Estimate_plot.png' width=80%/>
 
 
     # Removing Gd contamination with selected Gd ratio and method for estimating contamination coefficients.
+    # N_Gd = c(1,1.3831,1.0574,1.6784,1.4770) Natural Gd isotope abundance ratios.
+    # R_Gd = c(1,1.3084,1.0046,1.7641,1.7144) Estimated ratios calculated with control CYTOF data (Gd_Non_Ab).
+
     gdRatio = GdRatios['5%',]
     method = '1DNorm'
     fs_Clean = GdClean(fs,gdRatio = gdRatio,method = method)

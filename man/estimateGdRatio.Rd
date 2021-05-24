@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimateGdRatio.R
 \name{estimateGdRatio}
 \alias{estimateGdRatio}
-\title{Estimate the intensity ratios across Gd channels, the first channel was selected as the reference channel.}
+\title{Estimating the intensity ratios across channels within mass range of Gd, the first 155 channel was selected as the reference channel.}
 \usage{
 estimateGdRatio(ff, PercentList)
 }
@@ -12,10 +12,10 @@ estimateGdRatio(ff, PercentList)
 \item{PercentList}{The top-n percent of cells selected for estimating Gd ratios, sorted by mean expression of Gd channels.}
 }
 \value{
-The estimated intensity ratios across Gd channels, the first channel was selected as the reference channel.
+The estimated intensity ratios across channels, the 155 channel was selected as the reference channel.
 }
 \description{
-Estimate the intensity ratios across Gd channels, the first channel was selected as the reference channel.
+Estimating the intensity ratios across channels within mass range of Gd, the first 155 channel was selected as the reference channel.
 }
 \examples{
 library(GdClean)

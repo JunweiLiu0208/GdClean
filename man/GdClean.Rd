@@ -9,7 +9,7 @@ GdClean(fs, gdRatio = NULL, method = "1DNorm")
 \arguments{
 \item{fs}{The flowSet object of contaminated CyTOF files.}
 
-\item{gdRatio}{The selected intensity ratios across Gd channels, default with intensity ratios of natural abundance}
+\item{gdRatio}{The selected intensity ratios across Gd channels, default with natural Gd isotope abundance ratios}
 
 \item{method}{The method used for calculating contamination coefficients for each cell, default with '1DNorm', available options are '1DNorm','2DNorm','Min','Mean','Median'}
 }

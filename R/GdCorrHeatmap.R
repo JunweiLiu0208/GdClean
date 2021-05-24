@@ -10,9 +10,9 @@
 #' p1 <- GdCorrHeatmap(fs)
 #' p1
 GdCorrHeatmap <- function(fs) {
-  gdInfo <- getGdChannels(fs[[1]])
+  massInfo <- getMassChannels(fs[[1]])
 
-  channelPairs <- combn(gdInfo$gdChannelID, 2)
+  channelPairs <- combn(massInfo$massChannelID, 2)
   corrHeatmap <- matrix(0, length(fs), dim(channelPairs)[2])
   sampleID <- sampleNames(fs)
 
@@ -22,7 +22,6 @@ GdCorrHeatmap <- function(fs) {
       y <- cor(sampleData[, x[1]], sampleData[, x[2]])
       y
     })
-
     corrHeatmap[ii, ] <- corrTmp
   }
 

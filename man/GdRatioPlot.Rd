@@ -2,7 +2,7 @@
 % Please edit documentation in R/GdRatioPlot.R
 \name{GdRatioPlot}
 \alias{GdRatioPlot}
-\title{Compare the calculated Gd ratios with the Gd ratios of natural abundance}
+\title{Comparing the estimated Gd ratios with the of natural Gd abundance ratios}
 \usage{
 GdRatioPlot(GdRatios)
 }
@@ -14,7 +14,7 @@ GdRatioPlot(GdRatios)
 The ggplot object of the compared result.
 }
 \description{
-Compare the calculated Gd ratios with the Gd ratios of natural abundance
+Comparing the estimated Gd ratios with the of natural Gd abundance ratios
 }
 \examples{
 library(GdClean)

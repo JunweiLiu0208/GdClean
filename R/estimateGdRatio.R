@@ -1,9 +1,9 @@
-#' Estimate the intensity ratios across Gd channels, the first channel was selected as the reference channel.
+#' Estimating the intensity ratios across channels within mass range of Gd, the first 155 channel was selected as the reference channel.
 #'
 #' @param ff The flowframe object of Gd contaminated CyTOF data.
 #' @param PercentList The top-n percent of cells selected for estimating Gd ratios, sorted by mean expression of Gd channels.
 #'
-#' @return The estimated intensity ratios across Gd channels, the first channel was selected as the reference channel.
+#' @return The estimated intensity ratios across channels, the 155 channel was selected as the reference channel.
 #' @export
 #'
 #' @examples
@@ -12,17 +12,17 @@
 #' PercentList <- seq(5, 100, 5)
 #' GdRatios <- estimateGdRatio(ff, percentList)
 estimateGdRatio <- function(ff, PercentList) {
-  gdInfo <- getGdChannels(ff)
+  massInfo <- getMassChannels(ff)
 
   # calculated based on the selected flowframe
   dataTmp <- ff@exprs
-  gdData <- dataTmp[, gdInfo$gdChannelID]
+  gdData <- dataTmp[, massInfo$massChannelID]
   gdData <- as.data.frame(gdData)
   gdData$mean <- rowMeans(gdData)
 
   markerName <- ff@parameters@data$name
-  gdMarker <- markerName[gdInfo$gdChannelID]
-  PairChannel <- 2:length(gdInfo$gdChannelID)
+  gdMarker <- markerName[massInfo$massChannelID]
+  PairChannel <- 2:length(massInfo$massChannelID)
 
   LinearCoeff <- matrix(0, length(PercentList), length(PairChannel))
   for (ii in 1:length(PercentList)) {

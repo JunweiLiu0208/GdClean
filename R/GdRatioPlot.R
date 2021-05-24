@@ -1,4 +1,4 @@
-#' Compare the calculated Gd ratios with the Gd ratios of natural abundance
+#' Comparing the estimated Gd ratios with the of natural Gd abundance ratios
 #'
 #' @param GdRatios The calculated Gd Ratios from the 'estimateGdRatio'
 #''
@@ -50,6 +50,7 @@ GdRatioPlot <- function(GdRatios) {
       ggtitle(idTmp) +
       labs(x = "Top (n)% of Cells", y = "Coefficients of fitted Linear Models") +
       scale_x_continuous(breaks = c(1:10) * 10) +
+      scale_y_continuous(limits = c(0, 3)) +
       theme(
         plot.title = element_text(hjust = 0.5, size = 12),
         axis.title = element_text(size = 12, face = "bold"),
