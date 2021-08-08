@@ -12,7 +12,14 @@ Gadolinium-based Contrast Agents in MRI screening. The deposition of Gd
 isotopes in tissue cells will contaminate the signal of Gd
 isotope-conjugated antibodies in the CyTOF system and affect data
 quality. The details of this method can be found in the published paper
-(Under Revision).
+**‘GdClean: removal of Gadolinium contamination in mass cytometry
+data’**.
+
+Junwei Liu, Lulu Liu, Saisi Qu, Tongtong Zhang, Danyang Wang, Qinghua
+Ji, Tian Wang, Hongyu Shi, Kaichen Song, Weijia Fang, Wei Chen, Weiwei
+Yin, GdClean: removal of Gadolinium contamination in mass cytometry
+data, Bioinformatics, 2021; btab537,
+<a href="https://doi.org/10.1093/bioinformatics/btab537" class="uri">https://doi.org/10.1093/bioinformatics/btab537</a>
 
 ## Installation
 

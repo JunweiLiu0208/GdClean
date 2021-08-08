@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package was designed for removing **Gadolinium contamination** in the CyTOF system, which was induced by the application of Gadolinium-based Contrast Agents in MRI screening. The deposition of Gd isotopes in tissue cells will contaminate the signal of Gd isotope-conjugated antibodies in the CyTOF system and affect data quality. The details of this method can be found in the published paper (Under Revision). 
+This package was designed for removing **Gadolinium contamination** in the CyTOF system, which was induced by the application of Gadolinium-based Contrast Agents in MRI screening. The deposition of Gd isotopes in tissue cells will contaminate the signal of Gd isotope-conjugated antibodies in the CyTOF system and affect data quality. The details of this method can be found in the published paper **'GdClean: removal of Gadolinium contamination in mass cytometry data'**. 
+
+Junwei Liu, Lulu Liu, Saisi Qu, Tongtong Zhang, Danyang Wang, Qinghua Ji, Tian Wang, Hongyu Shi, Kaichen Song, Weijia Fang, Wei Chen, Weiwei Yin, GdClean: removal of Gadolinium contamination in mass cytometry data, Bioinformatics, 2021; btab537, https://doi.org/10.1093/bioinformatics/btab537
 
 ## Installation
 
