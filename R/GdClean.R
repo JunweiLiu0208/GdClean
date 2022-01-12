@@ -22,6 +22,7 @@
 #' gdRatio <- GdRatios["5%", ]
 #' method <- "1DNorm"
 #' fs_Clean <- GdClean(fs, gdRatio = gdRatio, method = method)
+#'
 GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
   massInfo <- getMassChannels(fs[[1]])
   gdChannelID <- massInfo$massChannelID
@@ -38,7 +39,6 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
   }
 
   print(paste0("Gd Ratios = ", paste(gdRatio, collapse = ", ")))
-
 
   for (ii in 1:length(fs)) {
     dataTmp <- fs[[ii]]@exprs
@@ -82,7 +82,7 @@ GdClean <- function(fs, gdRatio = NULL, method = "1DNorm") {
 
     # Data Compensate
     gdRatio <- matrix(gdRatio, nrow = 1)
-    gdNoiseData <- gdRatio[rep(1, length(estimatek)), ] * estimatek
+    gdNoiseData <- gdRatio[rep(1, length(estimatek)),] * estimatek
 
     gdCompensate <- gdDataTmp - gdNoiseData
     gdCompensate[gdCompensate < 0] <- 0 # remove negative values
